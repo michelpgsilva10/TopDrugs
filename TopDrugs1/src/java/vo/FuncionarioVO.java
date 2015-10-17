@@ -8,10 +8,6 @@ package vo;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,13 +18,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "funcionario")
-public class FuncionarioVO {
-    
-    @Id
-    @SequenceGenerator(initialValue = 1, name = "spk_funcionario")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "cod_funcionario")
-    private int id;
+public class FuncionarioVO extends PessoaVO {
     
     @Temporal(TemporalType.DATE)
     @Column(name = "data_admissao")
@@ -41,19 +31,10 @@ public class FuncionarioVO {
     private String funcao;
     
     @Column(name = "salario")
-    private float salario;
-    
+    private float salario;    
     
     public FuncionarioVO() {
         
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Date getDataAdmissao() {
