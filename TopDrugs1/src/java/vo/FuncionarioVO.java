@@ -43,6 +43,9 @@ public class FuncionarioVO {
     @Column(name = "salario")
     private float salario;
     
+    @
+    private PessoaVO pessoa;
+    
     public FuncionarioVO() {
         
     }

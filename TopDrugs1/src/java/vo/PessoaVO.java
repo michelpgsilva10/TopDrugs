@@ -15,27 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import org.eclipse.persistence.annotations.CloneCopyPolicy;
 
-/**
- *
- * @author aluno
- */
-/*
-cod_pessoa NUMBER, 
-cpf  VARCHAR(11), 
-nome VARCHAR(255), 
-email VARCHAR(50), 
-data_nascimento DATE, 
-bairro VARCHAR(100), 
-rua VARCHAR(255), 
-numero NUMBER(4) 
-complemento VARCHAR(50), 
-numero VARCHAR (10),
-cidade VARCHAR(100),
-uf CHAR(2)
-cep VARCHAR(9),
-local_de_trabalho VARCHAR(150),
-data_cadastro DATE,
-*/
+
 @Entity
 @Table(name="pessoa")
 public class PessoaVO {
