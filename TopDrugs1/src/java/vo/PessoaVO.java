@@ -12,12 +12,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
-import org.eclipse.persistence.annotations.CloneCopyPolicy;
 
 
 @Entity
 @Table(name="pessoa")
+ @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class PessoaVO {
 
     public PessoaVO() {
