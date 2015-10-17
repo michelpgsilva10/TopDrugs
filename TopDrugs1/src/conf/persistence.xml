@@ -3,6 +3,7 @@
   <persistence-unit name="TopDrugs1PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>vo.FuncionarioVO</class>
+    <class>vo.PessoaVO</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@192.168.205.129:1521:db01"/>

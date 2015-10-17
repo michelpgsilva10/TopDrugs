@@ -15,11 +15,13 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 @Entity
 @Table(name="pessoa")
- @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class PessoaVO {
 
     public PessoaVO() {
@@ -36,6 +38,7 @@ public class PessoaVO {
  private String cpf;
  @Column(name="email")
  private String email;
+ @Temporal(TemporalType.DATE)
  @Column(name="data_nascimento")
  private Date dataNascimento;
  @Column(name="bairro")
