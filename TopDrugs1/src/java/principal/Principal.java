@@ -31,23 +31,32 @@ public class Principal {
         
         FuncionarioVO func = new FuncionarioVO();
         func.setDataAdmissao(new Date(2015, 05, 15));
-        func.setFuncao("Gerente");
+        func.setFuncao("Vendedor");
         func.setMatricula("0000106");
         func.setSalario(25000.50f);
+        func.setNome("Evair Santos");
+        func.setBairro("Coxipó");
+        func.setCidade("Cuiabá");
+        func.setCpf("001.001.001-75");
+        func.setDataNascimento(new Date(1964, 1, 28));
+        func.setUf("MT");
+        func.setDataCadastro(new Date(2015, 9, 1));
+        func.setEmail("evair.sant0s@hotmail.com");
+        func.setNumero(15);
         
         PessoaVO pess = new PessoaVO();
-        pess.setNome("Juracy");
-        pess.setBairro("CPA");
+        pess.setNome("Roberto");
+        pess.setBairro("Paiaguás");
         pess.setCidade("Cuiabá");
         pess.setCpf("000.000.000-00");
         pess.setDataNascimento(new Date(1986, 1, 11));
         pess.setUf("MT");
-        pess.setEmail("procurador-geral.juracy@mp.mt.gov.br");
+        pess.setEmail("conselheiro.roberto@tce.mt.gov.br");
         pess.setNumero(10);
         
         gerenciadorEntidade.getTransaction().begin();
-        gerenciadorEntidade.persist(func);
         gerenciadorEntidade.persist(pess);
+        gerenciadorEntidade.persist(func);        
         gerenciadorEntidade.getTransaction().commit();
         
         System.exit(0);

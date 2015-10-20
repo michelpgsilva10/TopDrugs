@@ -8,12 +8,15 @@ package vo;
 
 import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,43 +24,59 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="pessoa")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "tipo_pessoa")
+@DiscriminatorValue(value = "Cliente")
 public class PessoaVO {
 
-    public PessoaVO() {
-    }
- 
+    @Id
+    @SequenceGenerator(name = "cod_pessoa", sequenceName = "spk_pessoa", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cod_pessoa")
+    @Column(name="cod_pessoa")
+    private int codigoPessoa;
     
- @Id
- @GeneratedValue(strategy = GenerationType.SEQUENCE)
- @Column(name="cod_pessoa")
- private int codigoPessoa;
- @Column(name="nome")
- private String nome;
- @Column(name="cpf")
- private String cpf;
- @Column(name="email")
- private String email;
- @Temporal(TemporalType.DATE)
- @Column(name="data_nascimento")
- private Date dataNascimento;
- @Column(name="bairro")
- private String bairro;
- @Column(name="rua")
- private String rua;
- @Column(name="numero")
- private int numero;
- @Column(name="complemento")
- private String complemento;
- @Column(name="cidade")
- private String cidade;
- @Column(name="uf")
- private String uf;
- @Column(name="local_de_trabalho")
- private String localDeTrabalho;
- @Column(name="data_cadastro")
- private String dataCadastro;
-
+    @Column(name="nome")
+    private String nome;
+    
+    @Column(name="cpf")
+    private String cpf;
+    
+    @Column(name="email")
+    private String email;
+    
+    @Temporal(TemporalType.DATE)
+    @Column(name="data_nascimento")
+    private Date dataNascimento;
+    
+    @Column(name="bairro")
+    private String bairro;
+    
+    @Column(name="rua")
+    private String rua;
+    
+    @Column(name="numero")
+    private int numero;
+    
+    @Column(name="complemento")
+    private String complemento;
+    
+    @Column(name="cidade")
+    private String cidade;
+    
+    @Column(name="uf")
+    private String uf;
+    
+    @Column(name="local_de_trabalho")
+    private String localDeTrabalho;
+    
+    @Temporal(TemporalType.DATE)
+    @Column(name="data_cadastro")
+    private Date dataCadastro;
+    
+    public PessoaVO() {
+        
+    }
+    
     public int getCodigoPessoa() {
         return codigoPessoa;
     }
@@ -154,11 +173,11 @@ public class PessoaVO {
         this.localDeTrabalho = localDeTrabalho;
     }
 
-    public String getDataCadastro() {
+    public Date getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(String dataCadastro) {
+    public void setDataCadastro(Date dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
  
