@@ -19,7 +19,7 @@ public class GenericDAO<VO> {
     
     public GenericDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
-        this.persistentClass = (Class<VO>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[1];        
+        this.persistentClass = (Class<VO>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];        
     }
     
     public void incluir(VO vo) {

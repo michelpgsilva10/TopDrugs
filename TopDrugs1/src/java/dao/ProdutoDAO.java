@@ -5,7 +5,9 @@
  */
 package dao;
 
+import java.util.List;
 import javax.persistence.EntityManager;
+import vo.PessoaVO;
 import vo.ProdutoVO;
 
 /**
@@ -14,7 +16,10 @@ import vo.ProdutoVO;
  */
 public class ProdutoDAO extends GenericDAO<ProdutoVO> {
     
+    private EntityManager entityManager;
+    
     public ProdutoDAO(EntityManager entityManager) {
         super(entityManager);
-    }
+        this.entityManager = entityManager;
+    }   
 }
