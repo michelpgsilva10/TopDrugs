@@ -20,14 +20,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name="fornecedor")
 public class FornecedorVO {
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "cod_fornecedor", sequenceName = "spk_fornecedor", allocationSize = 1)
+    @GeneratedValue(generator = "cod_fornecedor", strategy = GenerationType.SEQUENCE)
     @Column(name="cod_fornecedor")
     private int codigoGerente;
     

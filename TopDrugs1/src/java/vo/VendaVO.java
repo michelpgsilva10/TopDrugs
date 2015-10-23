@@ -12,8 +12,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -27,20 +32,21 @@ public class VendaVO {
         super();
     }
     @Id 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name="cod_venda",nullable=false)
+    @SequenceGenerator(name = "cod_venda", sequenceName = "spk_venda", allocationSize = 1)
+    @GeneratedValue(generator = "cod_venda", strategy = GenerationType.SEQUENCE)
+    @Column(name = "cod_venda", nullable = false)
     private int codVenda;
     
-    @Column(name="cod_vendedor",nullable=false)
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "funcionario_fk", nullable = false)
     private FuncionarioVO funcionario;
     
-    @Column(name="cod_cliente",nullable=false)
-    @ManyToOne(fetch=FetchType.LAZY)
-    private PessoaVO pessoa;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_fk", nullable = false)
+    private PessoaVO pessoa;    
     
-    @Column(name="cod_produto",nullable=false)
     @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "produto_fk", nullable = false)
     private ProdutoVO produto;
     
     @Column(name="numero_nota",nullable = false)
@@ -50,6 +56,7 @@ public class VendaVO {
     private float desconto;
     
     @Column(name="data")
+    @Temporal(TemporalType.DATE)
     private Date data;
 
     public int getCodVenda() {

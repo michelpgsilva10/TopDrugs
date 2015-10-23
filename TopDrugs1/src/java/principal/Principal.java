@@ -5,7 +5,6 @@
  */
 package principal;
 
-import dao.FuncionarioDAO;
 import dao.PessoaDAO;
 import java.util.Date;
 import java.util.List;
@@ -32,7 +31,7 @@ public class Principal {
             e.printStackTrace();
         }
         
-        /*FuncionarioVO func = new FuncionarioVO();
+        FuncionarioVO func = new FuncionarioVO();
         func.setDataAdmissao(new Date(2015, 05, 15));
         func.setFuncao("Vendedor");
         func.setMatricula("0000106");
@@ -52,7 +51,7 @@ public class Principal {
         pess.setBairro("Paiaguás");
         pess.setCidade("Cuiabá");
         pess.setCpf("000.000.000-00");
-        pess.setDataNascimento(new Date(1986, 1, 11));
+        pess.setDataNascimento(new Date(19840201));
         pess.setUf("MT");
         pess.setEmail("conselheiro.roberto@tce.mt.gov.br");
         pess.setNumero(10);
@@ -60,7 +59,7 @@ public class Principal {
         gerenciadorEntidade.getTransaction().begin();
         gerenciadorEntidade.persist(pess);
         gerenciadorEntidade.persist(func);        
-        gerenciadorEntidade.getTransaction().commit();*/
+        gerenciadorEntidade.getTransaction().commit();
         
         PessoaDAO pessoaDAO = new PessoaDAO(gerenciadorEntidade);
         List<PessoaVO> listaPess = pessoaDAO.getListaClientes();
