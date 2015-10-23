@@ -9,7 +9,23 @@
     </h:head>
     <h:body>
         Hello from Facelets
+        
         <br />
+        
+             <h:form id="form">
+        <h:panelGrid columns="2">
+            <h:outputLabel value="Nome: "/>
+            <p:inputText value="#{funcionarioBean.funcionario.nome}"/>
+        </h:panelGrid>
+                 <p:commandButton value="Salvar" actionListener="#{funcionarioBean.salvar()}" update="form"/>
+                 <p:dataTable id="tabela" value="#{funcionarioBean.funcionario}" var="cliente">
+            <p:column >
+                <h:outputText value="#{funcionarioBean.funcionario.nome}"/>
+            </p:column>
+        </p:dataTable> 
+
+            
+        
         <h:link outcome="welcomePrimefaces" value="Página de boas-vindas do Primefaces" />
         <p:dataTable var="func" value="#{funcionarioBean.listaFuncionarios}">
             <p:column headerText="Nome">
@@ -21,12 +37,24 @@
             <p:column headerText="Email">
                 <h:outputText value="#{func.email}" />
             </p:column>
-            <p:column headerText="Data de Nascimento">
-                <h:outputText value="#{func.dataNascimento}">
+            <p:column headerText="Salário">
+                <h:outputText value="#{func.salario}" />
+            </p:column>
+                        <p:column headerText="Função">
+                            <h:outputText value="#{func.funcao}" />
+            </p:column>
+                        <p:column headerText="Data Admissão">
+                            <h:outputText value="#{func.dataAdmissao.time}">
                     <f:convertDateTime pattern="dd/MM/yyyy" />
+                </h:outputText>
+            </p:column> 
+            <p:column headerText="Data de Nascimento">
+                <h:outputText value="#{func.dataNascimento.time}">
+                    <f:convertDateTime pattern="dd/MM/yy" />
                 </h:outputText>
             </p:column>           
         </p:dataTable>
+        </h:form>
     </h:body>
 </html>
 

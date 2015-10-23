@@ -45,6 +45,8 @@ public class ProdutoBean implements Serializable  {
     }
 
     public List<ProdutoVO> getListaproduto() {
+        if(listaproduto == null)
+            return produtoDAO.listarTodos();
         return listaproduto;
     }
 
@@ -59,6 +61,12 @@ public class ProdutoBean implements Serializable  {
     public void setProdutoDAO(ProdutoDAO produtoDAO) {
         this.produtoDAO = produtoDAO;
     }
+    
+     public void salvar(){
+           produtoDAO.iniciarTransacao();
+           produtoDAO.incluir(produto);
+           produtoDAO.confirmarTransacao();        
+           }
     
     
 }

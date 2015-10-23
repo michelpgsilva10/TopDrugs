@@ -8,7 +8,10 @@ package vo;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,6 +25,8 @@ import javax.persistence.TemporalType;
 public class ProdutoVO {
     
     @Id
+    @SequenceGenerator(name = "cod_produto",sequenceName = "spk_produto",allocationSize = 1)
+    @GeneratedValue(generator = "cod_produto",strategy = GenerationType.SEQUENCE)
     @Column(name = "cod_produto")
     private int codProduto;
     

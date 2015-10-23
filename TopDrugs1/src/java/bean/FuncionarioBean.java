@@ -9,9 +9,11 @@ import dao.FabricaEntityManager;
 import dao.FuncionarioDAO;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ApplicationScoped;
+import org.jboss.logging.Logger;
 import vo.FuncionarioVO;
 
 /**
@@ -65,5 +67,11 @@ public class FuncionarioBean implements Serializable {
     public void setFuncionarioDAO(FuncionarioDAO funcionarioDAO) {
         this.funcionarioDAO = funcionarioDAO;
     }
-    
-}
+       public void salvar(){
+           funcionarioDAO.iniciarTransacao();
+           funcionarioDAO.incluir(funcionario);
+           funcionarioDAO.confirmarTransacao();        
+           }
+   }
+   
+
