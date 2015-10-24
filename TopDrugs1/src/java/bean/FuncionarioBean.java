@@ -74,12 +74,23 @@ public class FuncionarioBean implements Serializable {
     public void setBuscaNome(String buscaNome) {
         this.buscaNome = buscaNome;
     }
-       public void salvar(){
+       public void incluir(){
            funcionarioDAO.iniciarTransacao();
            funcionarioDAO.incluir(funcionario);
            funcionarioDAO.confirmarTransacao();        
            }
        
+       public void alterar(){
+           funcionarioDAO.iniciarTransacao();
+           funcionarioDAO.alterar(funcionario);
+           funcionarioDAO.confirmarTransacao();
+       }
+       
+       public void excluir(){
+           funcionarioDAO.iniciarTransacao();
+           funcionarioDAO.excluir(funcionario);
+           funcionarioDAO.confirmarTransacao();
+       }
        public void buscar(){
            //funcionarioDAO.iniciarTransacao();
            setListaFuncionarios(funcionarioDAO.buscar(buscaNome));

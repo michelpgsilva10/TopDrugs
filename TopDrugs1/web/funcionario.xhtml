@@ -10,6 +10,7 @@
     <h:body>
         Bem Vindo ao Sistema
         <br />
+        <p:outputPanel style="font-size: 12px" >  
 <p:layout style="min-width:400px;min-height:200px;">
     <p:layoutUnit position="west" resizable="true" size="100" minSize="40" maxSize="200">
         Menu Lateral
@@ -59,8 +60,13 @@
                 </p:column>           
             </p:dataTable>
         </h:form>
+           <h:panelGrid columns="3">
+                   <p:button href="funcionarioIncluir.xhtml" value="Incluir"/>
+                   <p:button href="funcionarioIncluir.xhtml" value="Alterar"/>
+                   <p:commandButton value="Excluir" actionListener="#{funcionarioBean.excluir()}" />
+            </h:panelGrid>
          </p:layoutUnit>
-</p:layout> 
+</p:layout> </p:outputPanel>
     </h:body>
 </html>
 
