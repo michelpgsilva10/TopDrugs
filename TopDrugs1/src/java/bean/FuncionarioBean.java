@@ -25,7 +25,7 @@ public class FuncionarioBean implements Serializable {
     private FuncionarioVO funcionario;
     private List<FuncionarioVO> listaFuncionarios;
     private FuncionarioDAO funcionarioDAO;
-    
+    private String buscaNome;
     /**
      * Creates a new instance of FuncionarioBean
      */
@@ -37,6 +37,7 @@ public class FuncionarioBean implements Serializable {
     public void init() {
         funcionarioDAO = new FuncionarioDAO(FabricaEntityManager.getEntityManager());
         funcionario = new FuncionarioVO();
+        
     }
     
     public FuncionarioVO getFuncionario() {
@@ -65,11 +66,26 @@ public class FuncionarioBean implements Serializable {
     public void setFuncionarioDAO(FuncionarioDAO funcionarioDAO) {
         this.funcionarioDAO = funcionarioDAO;
     }
+
+    public String getBuscaNome() {
+        return buscaNome;
+    }
+
+    public void setBuscaNome(String buscaNome) {
+        this.buscaNome = buscaNome;
+    }
        public void salvar(){
            funcionarioDAO.iniciarTransacao();
            funcionarioDAO.incluir(funcionario);
            funcionarioDAO.confirmarTransacao();        
            }
+       
+       public void buscar(){
+           //funcionarioDAO.iniciarTransacao();
+           setListaFuncionarios(funcionarioDAO.buscar(buscaNome));
+           
+           
+       }
    }
    
 

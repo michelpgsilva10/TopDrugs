@@ -25,7 +25,7 @@ public class Principal {
         EntityManager gerenciadorEntidade = null;
         
         try {
-            fabrica = Persistence.createEntityManagerFactory("TopDrugs1PU");
+            fabrica = Persistence.createEntityManagerFactory("TopDrugs");
             gerenciadorEntidade = fabrica.createEntityManager();
         } catch (Exception e) {
             e.printStackTrace();

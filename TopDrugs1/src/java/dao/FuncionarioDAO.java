@@ -5,6 +5,7 @@
  */
 package dao;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import vo.FuncionarioVO;
 
@@ -13,8 +14,15 @@ import vo.FuncionarioVO;
  * @author michel
  */
 public class FuncionarioDAO extends GenericDAO<FuncionarioVO> {
-    
+    private EntityManager manager;
     public FuncionarioDAO(EntityManager entityManager) {
         super(entityManager);
+        this.manager =entityManager;
+    }
+    
+    
+    public List<FuncionarioVO> buscar( String nome){
+        String sql="Select f from FuncionarioVO f where f.nome LIKE :name";
+       return manager.createQuery(sql).setParameter("name","%"+nome+"%").getResultList();
     }
 }
