@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>        
+        <title>Clientes</title>
+    </h:head>
+    <h:body>                
+
+        <p:outputPanel style="font-size: 12px">
+            <p:layout style="height: 400px">
+                <p:layoutUnit position="west" size="20%">
+                    teste
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center" size="80%">
+                    <h:panelGrid columns="3" cellpadding="5" style="padding: 10px; text-align: center">
+                        <p:outputLabel value="Nome:" />
+                        <p:inputText size="40" />
+                        <p:button value="Pesquisar"></p:button>
+                    </h:panelGrid>
+
+                    <p:outputPanel>
+                        <p:dataTable var="cliente" value="#{pessoaBean.listaClientes}" selectionMode="single" selection="#{pessoaBean.pessoa}" rowKey="#{cliente.codigoPessoa}"> 
+                            <p:column headerText="Nome">
+                                <p:outputLabel value="#{cliente.nome}" />
+                            </p:column>
+
+                            <p:column headerText="Email" width="25%">
+                                <p:outputLabel value="#{cliente.email}" />
+                            </p:column>
+
+                            <p:column headerText="CPF">
+                                <p:outputLabel value="#{cliente.cpf}" />                        
+                            </p:column>
+
+                            <p:column headerText="Rua">
+                                <p:outputLabel value="#{cliente.rua}" />
+                            </p:column>
+
+                            <p:column headerText="Número">
+                                <p:outputLabel value="#{cliente.numero}" />
+                            </p:column>
+
+                            <p:column headerText="Bairro">
+                                <p:outputLabel value="#{cliente.bairro}" />
+                            </p:column>
+
+                            <p:column headerText="Cidade">
+                                <p:outputLabel value="#{cliente.cidade}" />
+                            </p:column>
+
+                            <p:column headerText="UF">
+                                <p:outputLabel value="#{cliente.uf}" />
+                            </p:column>
+
+                        </p:dataTable>
+                    </p:outputPanel>
+                    
+                    <p:outputLabel>
+                        <h:panelGrid columns="3">
+                            <p:button value="Incluir" />
+                            <p:button value="Alterar" />
+                            <p:button value="Excluir" />
+                        </h:panelGrid>
+                    </p:outputLabel>
+
+                </p:layoutUnit>
+            </p:layout>
+        </p:outputPanel>
+
+    </h:body>
+</html>

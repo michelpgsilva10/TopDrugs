@@ -24,6 +24,7 @@ public class PessoaBean implements Serializable{
     
      private PessoaVO pessoa;
      private List<PessoaVO> listaPessoa;
+     private List<PessoaVO> listaClientes;
      private PessoaDAO  pessoaDAO;
 
     /**
@@ -60,6 +61,16 @@ public class PessoaBean implements Serializable{
 
     public void setPessoaDAO(PessoaDAO pessoaDAO) {
         this.pessoaDAO = pessoaDAO;
+    }
+
+    public List<PessoaVO> getListaClientes() {
+        if (listaClientes == null) 
+            return pessoaDAO.getListaClientes();
+        return listaClientes;
+    }
+
+    public void setListaClientes(List<PessoaVO> listaClientes) {
+        this.listaClientes = listaClientes;
     }
     
     
