@@ -5,62 +5,107 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Top Drugs</title>
+        <title>Produtos</title>
     </h:head>
     <h:body>
-        Produto
-        <br />
-        
-     <p:outputPanel style="font-size: 12px" >  
-            <p:layout style="min-width:400px;min-height:200px;">
-                <p:layoutUnit position="west" resizable="true" size="100" minSize="40" maxSize="200">
+
+
+        <p:outputPanel style="font-size: 12px" >  
+            <p:layout>
+                <p:layoutUnit position="west"  size="20%">
                     Menu Lateral
                 </p:layoutUnit>
                 <p:layoutUnit position="center">
-                    <h:form id="form">
+                    <h:form id="produtos">
                         <h:panelGrid columns="3">
                             <h:outputLabel value="Nome: "/>
                             <p:inputText value="#{produtoBean.buscaNome}"/>
-                            <p:commandButton value="Pesquisar" actionListener="#{produtoBean.buscar()}" update="form"/>
+                            <p:commandButton value="Pesquisar" actionListener="#{produtoBean.buscar()}" update="produtos"/>
                         </h:panelGrid>
-                
-        <p:dataTable var="prod" value="#{produtoBean.listaproduto}" selectionMode="single" selection="#{produtoBean.produto}" rowKey="#{prod.codProduto}">
-            <p:column headerText="Nome">
-                <h:outputText value="#{prod.nome}" />
-            </p:column>
-            <p:column headerText="Código de Barra">
-                <h:outputText value="#{prod.codBarra}" />
-            </p:column>
-            <p:column headerText="Fabricante">
-                <h:outputText value="#{prod.fabricante}" />
-            </p:column>
-            <p:column headerText="Preço">
-                <h:outputText value="#{prod.preco}" />
-            </p:column>
-            <p:column headerText="Qtde Minima">
-                <h:outputText value="#{prod.qtdeMin}" />
-            </p:column>
-                        <p:column headerText="Qtde Máxima">
-                            <h:outputText value="#{prod.qtdeMax}" />
-            </p:column>
-                        <p:column headerText="Data Validade">
-                            <h:outputText value="#{prod.dataValidade.time}">
-                    <f:convertDateTime pattern="dd/MM/yyyy" />
-                </h:outputText>
-            </p:column> 
-            <p:column headerText="Lote">
-                <h:outputText value="#{prod.lote}">
-                </h:outputText>
-            </p:column>           
-        </p:dataTable>
-        </h:form>
-                       <h:panelGrid columns="3">
-                        <p:button href="produtoCadastro.xhtml" value="Incluir"/>
-                        <p:button href="produtoCadastro.xhtml" value="Alterar" />
-                        <p:commandButton value="Excluir" actionListener="#{produtoBean.excluir()}" update="form" />
+                        <p:outputPanel>    
+                            <p:dataTable var="prod" value="#{produtoBean.listaproduto}" selectionMode="single" selection="#{produtoBean.produto}" rowKey="#{prod.codProduto}">
+                                <p:column headerText="Nome">
+                                    <h:outputText value="#{prod.nome}" />
+                                </p:column>
+                                <p:column headerText="Código de Barra">
+                                    <h:outputText value="#{prod.codBarra}" />
+                                </p:column>
+                                <p:column headerText="Fabricante">
+                                    <h:outputText value="#{prod.fabricante}" />
+                                </p:column>
+                                <p:column headerText="Preço">
+                                    <h:outputText value="#{prod.preco}" />
+                                </p:column>
+                                <p:column headerText="Qtde Minima">
+                                    <h:outputText value="#{prod.qtdeMin}" />
+                                </p:column>
+                                <p:column headerText="Qtde Máxima">
+                                    <h:outputText value="#{prod.qtdeMax}" />
+                                </p:column>
+                                <p:column headerText="Data Validade">
+                                    <h:outputText value="#{prod.dataValidade.time}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </p:column> 
+                                <p:column headerText="Lote">
+                                    <h:outputText value="#{prod.lote}">
+                                    </h:outputText>
+                                </p:column>           
+                            </p:dataTable>
+                        </p:outputPanel>  
+                        <p:outputLabel>
+                           <h:panelGrid columns="3">
+                        <p:commandButton value="Alterar" update="cadastro_produto" />
+                        <p:commandButton value="Excluir" actionListener="#{produtoBean.excluir()}" update="produtos" />
                     </h:panelGrid>
+                        </p:outputLabel>
+                    </h:form>
+                    <p:outputPanel style="margin-top: 15px; border: 1px solid gainsboro">
+                        
+                        <h:form id="cadastro_produto">
+                               <p:growl id="mensagem" showDetail="true" sticky="true" />
+                               <p:outputPanel style="padding: 20px; font-size: 18px">
+                                <p:outputLabel value="Cadastro de Produtos" />
+                            </p:outputPanel>
+                           <p:outputPanel style="padding: 5px 10px 20px 10px;">
+                                <h:panelGrid id="output" columns="2" columnClasses="label, value">
+                              
+                                    <p:outputLabel value="Nome:" />
+                                    <p:inputText style="width: 300px" value="#{produtoBean.produto.nome}" />
+                                    <p:outputLabel value="Código de Barra:" />
+                                    <p:inputText style="width: 250px" value="#{produtoBean.produto.codBarra}" />
+                                    <p:outputLabel value="Fabricante:" />
+                                    <p:inputText style="width: 250px" value="#{produtoBean.produto.fabricante}" />
+                                    <p:outputLabel value="Preço:" />
+                                    <p:inputText style="width: 100px" value="#{produtoBean.produto.preco}" />             
+
+                                    <p:outputLabel value="Quantidade Mínima:" />
+                                    <p:inputText style="width: 50px" value="#{produtoBean.produto.qtdeMin}" />
+
+                                    <p:outputLabel value="Qunatidade Máxima:" />
+                                    <p:inputText style="width: 50px" value="#{produtoBean.produto.qtdeMax}" />
+
+                                    <p:outputLabel value="Data Validade:" />
+                                    <p:calendar style="width: 100px" value="#{produtoBean.produto.dataValidade}" />
+
+                                    <p:outputLabel value="Lote:" />
+                                    <p:inputText style="width: 100px" value="#{produtoBean.produto.lote}" />
+
+                                </h:panelGrid>
+                            </p:outputPanel>
+                                 <p:outputPanel style="text-align: right;">
+                                <h:panelGrid columns="2" cellspacing="5" >
+                                    <p:commandButton value="Limpar Campos" actionListener="#{produtoBean.limparDadosProduto()}" update="cadastro_produto" />
+                                    <p:commandButton value="Salvar" actionListener="#{produtoBean.salvar()}" update="produtos cadastro_produto mensagem"/>
+                                </h:panelGrid>
+                            </p:outputPanel>
+
+                        </h:form>
+                    </p:outputPanel>
+                 
                 </p:layoutUnit>
-            </p:layout> </p:outputPanel>
+            </p:layout> 
+        </p:outputPanel>
     </h:body>
 </html>
 

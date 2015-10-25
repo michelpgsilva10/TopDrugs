@@ -5,22 +5,22 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Top Drugs System your manage life.</title>
+        <title>Funcionários</title>
     </h:head>
     <h:body>
-        Bem Vindo ao Sistema
-        <br />
+   
         <p:outputPanel style="font-size: 12px" >  
-            <p:layout style="min-width:400px;min-height:200px;">
-                <p:layoutUnit position="west" resizable="true" size="100" minSize="40" maxSize="200">
+            <p:layout >
+                <p:layoutUnit position="west" resizable="true" size="20%">
                     Menu Lateral
                 </p:layoutUnit>
                 <p:layoutUnit position="center">
-                    <h:form id="form">
+                    <h:form id="funcionario">
+
                         <h:panelGrid columns="3">
                             <h:outputLabel value="Nome: "/>
                             <p:inputText value="#{funcionarioBean.buscaNome}"/>
-                            <p:commandButton value="Pesquisar" actionListener="#{funcionarioBean.buscar()}" update="form"/>
+                            <p:commandButton value="Pesquisar" actionListener="#{funcionarioBean.buscar()}" update="funcionario"/>
                         </h:panelGrid>
 
 
@@ -55,13 +55,58 @@
                             </p:column>           
                         </p:dataTable>
                     </h:form>
+
                     <h:panelGrid columns="3">
-                        <p:button href="funcionarioCadastro.xhtml" value="Incluir"/>
-                        <p:button href="funcionarioCadastro.xhtml" value="Alterar" />
-                        <p:commandButton value="Excluir" actionListener="#{funcionarioBean.excluir()}" update="form" />
+                       <p:commandButton value="Alterar" update="cadastro_funcionario" />
+                        <p:commandButton value="Excluir" actionListener="#{funcionarioBean.excluir()}" update="funcionario" />
                     </h:panelGrid>
+
+
+                    <p:outputPanel style="margin-top: 15px; border: 1px solid gainsboro">
+                        <h:form id="cadastro_funcionario">
+                            <p:growl id="mensagem" showDetail="true" sticky="true" />
+                            <p:outputPanel style="padding: 20px; font-size: 18px">
+                                <p:outputLabel value="Cadastro de Funcionários" />
+                            </p:outputPanel>
+                            <p:outputPanel style="padding: 5px 10px 20px 10px;">                  
+                                <h:panelGrid id="output" columns="2" columnClasses="label, value">
+                                    <p:outputLabel value="Nome:" />
+                                    <p:inputText style="width: 400px" value="#{funcionarioBean.funcionario.nome}" />
+
+                                    <p:outputLabel value="CPF:" />
+                                    <p:inputText style="width: 150px" value="#{funcionarioBean.funcionario.cpf}" />
+                                    <p:outputLabel value="Matrícula:" />
+                                    <p:inputText style="width: 150px" value="#{funcionarioBean.funcionario.matricula}" />             
+
+                                    <p:outputLabel value="E-mail:" />
+                                    <p:inputText style="width: 250px" value="#{funcionarioBean.funcionario.email}" />
+
+                                    <p:outputLabel value="Salário:" />
+                                    <p:inputText style="width: 150px" value="#{funcionarioBean.funcionario.salario}" />
+
+                                    <p:outputLabel value="Função:" />
+                                    <p:inputText style="width: 250px" value="#{funcionarioBean.funcionario.funcao}" />
+
+                                    <p:outputLabel value="Data Admissão:" />
+                                    <p:calendar style="width: 150px" value="#{funcionarioBean.funcionario.dataAdmissao}" />
+
+                                    <p:outputLabel value="Data de Nascimento:" />
+                                    <p:calendar style="width: 150px" value="#{funcionarioBean.funcionario.dataNascimento}" />
+                                </h:panelGrid>
+                            </p:outputPanel>
+                            <p:outputPanel style="text-align: right;">
+                                <h:panelGrid columns="2" cellspacing="5" >
+                                    <p:commandButton value="Limpar Campos" actionListener="#{funcionarioBean.limparDadosFuncionario()}" update="cadastro_funcionario" />
+                                    <p:commandButton value="Salvar" actionListener="#{funcionarioBean.salvar()}" update="funcionario cadastro_funcionario mensagem"/>
+                                </h:panelGrid>
+                            </p:outputPanel>
+
+                        </h:form>
+                    </p:outputPanel>
                 </p:layoutUnit>
-            </p:layout> </p:outputPanel>
+            </p:layout>  
+        </p:outputPanel>
+
     </h:body>
 </html>
 

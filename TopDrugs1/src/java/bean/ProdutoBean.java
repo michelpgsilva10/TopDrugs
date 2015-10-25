@@ -10,8 +10,10 @@ import dao.ProdutoDAO;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import vo.ProdutoVO;
 
 /**
@@ -72,6 +74,9 @@ public class ProdutoBean implements Serializable  {
     }
     
      public void salvar(){
+                 FacesContext context = FacesContext.getCurrentInstance();
+        
+        context.addMessage(null, new FacesMessage("Cadastro de Produto", "O registro foi incluído com sucesso!"));
            produtoDAO.iniciarTransacao();
            produtoDAO.incluir(produto);
            produtoDAO.confirmarTransacao();        
@@ -80,6 +85,7 @@ public class ProdutoBean implements Serializable  {
            produtoDAO.iniciarTransacao();
            produtoDAO.excluir(produto);
            produtoDAO.confirmarTransacao();
+           produto = new ProdutoVO();
        }
         public void buscar(){
     
