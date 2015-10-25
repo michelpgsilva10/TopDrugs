@@ -87,6 +87,18 @@ public class ProdutoBean implements Serializable  {
            produtoDAO.confirmarTransacao();
            produto = new ProdutoVO();
        }
+         
+       public void limparDadosProduto(){
+           produto.setCodBarra("");
+           produto.setDataValidade(null);
+           produto.setFabricante("");
+           produto.setPreco(0);
+           produto.setNome("");
+           produto.setQtdeMax(0);
+           produto.setQtdeMin(0);
+           produto.setTipo("");
+           produto.setLote("");
+       }  
         public void buscar(){
     
            setListaproduto(produtoDAO.buscar(buscaNome));

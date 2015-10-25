@@ -54,13 +54,11 @@
                                 </h:outputText>
                             </p:column>           
                         </p:dataTable>
-                    </h:form>
-
-                    <h:panelGrid columns="3">
+                         <h:panelGrid columns="2">
                        <p:commandButton value="Alterar" update="cadastro_funcionario" />
                         <p:commandButton value="Excluir" actionListener="#{funcionarioBean.excluir()}" update="funcionario" />
                     </h:panelGrid>
-
+                    </h:form>
 
                     <p:outputPanel style="margin-top: 15px; border: 1px solid gainsboro">
                         <h:form id="cadastro_funcionario">

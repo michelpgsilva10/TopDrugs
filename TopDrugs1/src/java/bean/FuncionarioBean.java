@@ -84,11 +84,11 @@ public class FuncionarioBean implements Serializable {
         this.buscaNome = buscaNome;
     }
 
-    public void incluir() {
+   /* public void incluir() {
         funcionarioDAO.iniciarTransacao();
         funcionarioDAO.incluir(funcionario);
         funcionarioDAO.confirmarTransacao();
-    }
+    } */
 
     public void alterar() {
         funcionarioDAO.iniciarTransacao();
