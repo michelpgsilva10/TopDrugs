@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>TODO supply a title</title>
+    </h:head>
+    <h:body>
+        <p:outputPanel style="font-size: 12px" >  
+      <p:layout style="min-width:400px;min-height:600px;">
+    <p:layoutUnit position="west" resizable="true" size="100" minSize="40" maxSize="200">
+        Menu Lateral
+    </p:layoutUnit>
+   <p:layoutUnit position="center">
+    <h:form>
+        <p:outputPanel> 
+                <h:panelGrid id="output" columns="2" columnClasses="label, value">
+            <p:outputLabel value="Nome:" />
+            <p:inputText style="width: 300px" value="#{produtoBean.produto.nome}" />
+            <p:outputLabel value="Código de Barra:" />
+            <p:inputText style="width: 250px" value="#{produtoBean.produto.codBarra}" />
+            <p:outputLabel value="Fabricante:" />
+            <p:inputText style="width: 250px" value="#{produtoBean.produto.fabricante}" />
+            <p:outputLabel value="Preço:" />
+            <p:inputText style="width: 100px" value="#{produtoBean.produto.preco}" />             
+ 
+            <p:outputLabel value="Quantidade Mínima:" />
+            <p:inputText style="width: 50px" value="#{produtoBean.produto.qtdeMin}" />
+ 
+            <p:outputLabel value="Qunatidade Máxima:" />
+            <p:inputText style="width: 50px" value="#{produtoBean.produto.qtdeMax}" />
+ 
+            <p:outputLabel value="Data Validade:" />
+            <p:calendar style="width: 100px" value="#{produtoBean.produto.dataValidade}" />
+ 
+            <p:outputLabel value="Lote:" />
+              <p:inputText style="width: 100px" value="#{produtoBean.produto.lote}" />
+
+        </h:panelGrid>
+        </p:outputPanel>
+   
+</h:form>
+        <h:panelGrid columns="1">
+            <p:commandButton value="Salvar" actionListener="#{produtoBean.salvar()}" />
+            </h:panelGrid>
+   </p:layoutUnit>
+</p:layout> 
+         </p:outputPanel>        
+    </h:body>
+</html>

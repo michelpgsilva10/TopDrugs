@@ -5,27 +5,31 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Top Drugs</title>
     </h:head>
     <h:body>
-        Hello from Facelets
-        
+        Produto
         <br />
         
-             <h:form id="form">
-        <h:panelGrid columns="2">
-            <h:outputLabel value="Nome: "/>
-            <p:inputText value="#{produtoBean.produto.nome}"/>
-        </h:panelGrid>
-                 <p:commandButton value="Salvar" actionListener="#{produtoBean.salvar()}" update="form"/>
+     <p:outputPanel style="font-size: 12px" >  
+            <p:layout style="min-width:400px;min-height:200px;">
+                <p:layoutUnit position="west" resizable="true" size="100" minSize="40" maxSize="200">
+                    Menu Lateral
+                </p:layoutUnit>
+                <p:layoutUnit position="center">
+                    <h:form id="form">
+                        <h:panelGrid columns="3">
+                            <h:outputLabel value="Nome: "/>
+                            <p:inputText value="#{produtoBean.buscaNome}"/>
+                            <p:commandButton value="Pesquisar" actionListener="#{produtoBean.buscar()}" update="form"/>
+                        </h:panelGrid>
                 
-
-            
-        
-        <h:link outcome="welcomePrimefaces" value="Página de boas-vindas do Primefaces" />
-        <p:dataTable var="prod" value="#{produtoBean.listaproduto}">
+        <p:dataTable var="prod" value="#{produtoBean.listaproduto}" selectionMode="single" selection="#{produtoBean.produto}" rowKey="#{prod.codProduto}">
             <p:column headerText="Nome">
                 <h:outputText value="#{prod.nome}" />
+            </p:column>
+            <p:column headerText="Código de Barra">
+                <h:outputText value="#{prod.codBarra}" />
             </p:column>
             <p:column headerText="Fabricante">
                 <h:outputText value="#{prod.fabricante}" />
@@ -50,6 +54,13 @@
             </p:column>           
         </p:dataTable>
         </h:form>
+                       <h:panelGrid columns="3">
+                        <p:button href="produtoCadastro.xhtml" value="Incluir"/>
+                        <p:button href="produtoCadastro.xhtml" value="Alterar" />
+                        <p:commandButton value="Excluir" actionListener="#{produtoBean.excluir()}" update="form" />
+                    </h:panelGrid>
+                </p:layoutUnit>
+            </p:layout> </p:outputPanel>
     </h:body>
 </html>
 

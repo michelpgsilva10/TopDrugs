@@ -25,6 +25,7 @@ public class ProdutoBean implements Serializable  {
      private ProdutoVO produto;
      private List<ProdutoVO> listaproduto;
      private ProdutoDAO produtoDAO;
+     private String buscaNome;
     /**
      * Creates a new instance of ProdutoBean
      */
@@ -61,12 +62,31 @@ public class ProdutoBean implements Serializable  {
     public void setProdutoDAO(ProdutoDAO produtoDAO) {
         this.produtoDAO = produtoDAO;
     }
+
+    public String getBuscaNome() {
+        return buscaNome;
+    }
+
+    public void setBuscaNome(String buscaNome) {
+        this.buscaNome = buscaNome;
+    }
     
      public void salvar(){
            produtoDAO.iniciarTransacao();
            produtoDAO.incluir(produto);
            produtoDAO.confirmarTransacao();        
            }
+         public void excluir(){
+           produtoDAO.iniciarTransacao();
+           produtoDAO.excluir(produto);
+           produtoDAO.confirmarTransacao();
+       }
+        public void buscar(){
+    
+           setListaproduto(produtoDAO.buscar(buscaNome));
+           
+           
+       }
     
     
 }
