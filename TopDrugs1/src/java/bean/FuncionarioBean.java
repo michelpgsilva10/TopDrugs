@@ -11,7 +11,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ApplicationScoped;
+import javax.faces.view.ViewScoped;
+
 import vo.FuncionarioVO;
 
 /**
@@ -19,7 +20,7 @@ import vo.FuncionarioVO;
  * @author michel
  */
 @ManagedBean
-@ApplicationScoped
+@ViewScoped
 public class FuncionarioBean implements Serializable {
 
     private FuncionarioVO funcionario;
@@ -62,7 +63,9 @@ public class FuncionarioBean implements Serializable {
     public FuncionarioDAO getFuncionarioDAO() {
         return this.funcionarioDAO;
     }
-    
+    public int getID(){
+        return this.funcionario.getCodigoPessoa();
+    }
     public void setFuncionarioDAO(FuncionarioDAO funcionarioDAO) {
         this.funcionarioDAO = funcionarioDAO;
     }
@@ -97,6 +100,7 @@ public class FuncionarioBean implements Serializable {
            
            
        }
+
    }
    
 

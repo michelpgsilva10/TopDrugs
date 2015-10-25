@@ -11,62 +11,57 @@
         Bem Vindo ao Sistema
         <br />
         <p:outputPanel style="font-size: 12px" >  
-<p:layout style="min-width:400px;min-height:200px;">
-    <p:layoutUnit position="west" resizable="true" size="100" minSize="40" maxSize="200">
-        Menu Lateral
-    </p:layoutUnit>
-     <p:layoutUnit position="center">
-        <h:form id="form">
-            <h:panelGrid columns="3">
-                <h:outputLabel value="Nome: "/>
-                <p:inputText value="#{funcionarioBean.buscaNome}"/>
-                <p:commandButton value="Pesquisar" actionListener="#{funcionarioBean.buscar()}" update="form"/>
-            </h:panelGrid>
-          
-            <p:dataTable id="tabela" value="#{funcionarioBean.funcionario}" var="cliente">
-                <p:column >
-                    <h:outputText value="#{funcionarioBean.funcionario.nome}"/>
-                </p:column>
-            </p:dataTable> 
+            <p:layout style="min-width:400px;min-height:200px;">
+                <p:layoutUnit position="west" resizable="true" size="100" minSize="40" maxSize="200">
+                    Menu Lateral
+                </p:layoutUnit>
+                <p:layoutUnit position="center">
+                    <h:form id="form">
+                        <h:panelGrid columns="3">
+                            <h:outputLabel value="Nome: "/>
+                            <p:inputText value="#{funcionarioBean.buscaNome}"/>
+                            <p:commandButton value="Pesquisar" actionListener="#{funcionarioBean.buscar()}" update="form"/>
+                        </h:panelGrid>
 
 
-
-            <h:link outcome="welcomePrimefaces" value="Página de boas-vindas do Primefaces" />
-            <p:dataTable var="func" value="#{funcionarioBean.listaFuncionarios}">
-                <p:column headerText="Nome">
-                    <h:outputText value="#{func.nome}" />
-                </p:column>
-                <p:column headerText="CPF">
-                    <h:outputText value="#{func.cpf}" />
-                </p:column>
-                <p:column headerText="Email">
-                    <h:outputText value="#{func.email}" />
-                </p:column>
-                <p:column headerText="Salário">
-                    <h:outputText value="#{func.salario}" />
-                </p:column>
-                <p:column headerText="Função">
-                    <h:outputText value="#{func.funcao}" />
-                </p:column>
-                <p:column headerText="Data Admissão">
-                    <h:outputText value="#{func.dataAdmissao.time}">
-                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                    </h:outputText>
-                </p:column> 
-                <p:column headerText="Data de Nascimento">
-                    <h:outputText value="#{func.dataNascimento.time}">
-                        <f:convertDateTime pattern="dd/MM/yy" />
-                    </h:outputText>
-                </p:column>           
-            </p:dataTable>
-        </h:form>
-           <h:panelGrid columns="3">
-                   <p:button href="funcionarioIncluir.xhtml" value="Incluir"/>
-                   <p:button href="funcionarioIncluir.xhtml" value="Alterar"/>
-                   <p:commandButton value="Excluir" actionListener="#{funcionarioBean.excluir()}" />
-            </h:panelGrid>
-         </p:layoutUnit>
-</p:layout> </p:outputPanel>
+                        <p:dataTable var="func" value="#{funcionarioBean.listaFuncionarios}" selectionMode="single" selection="#{funcionarioBean.funcionario}" rowKey="#{func.codigoPessoa}">
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{func.nome}" />
+                            </p:column>
+                            <p:column headerText="CPF">
+                                <h:outputText value="#{func.cpf}" />
+                            </p:column>
+                            <p:column headerText="Matricula">
+                                <h:outputText value="#{func.matricula}" />
+                            </p:column>
+                            <p:column headerText="Email">
+                                <h:outputText value="#{func.email}" />
+                            </p:column>
+                            <p:column headerText="Salário">
+                                <h:outputText value="#{func.salario}" />
+                            </p:column>
+                            <p:column headerText="Função">
+                                <h:outputText value="#{func.funcao}" />
+                            </p:column>
+                            <p:column headerText="Data Admissão">
+                                <h:outputText value="#{func.dataAdmissao.time}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+                            </p:column> 
+                            <p:column headerText="Data de Nascimento">
+                                <h:outputText value="#{func.dataNascimento.time}">
+                                    <f:convertDateTime pattern="dd/MM/yy" />
+                                </h:outputText>
+                            </p:column>           
+                        </p:dataTable>
+                    </h:form>
+                    <h:panelGrid columns="3">
+                        <p:button href="funcionarioCadastro.xhtml" value="Incluir"/>
+                        <p:button href="funcionarioCadastro.xhtml" value="Alterar" />
+                        <p:commandButton value="Excluir" actionListener="#{funcionarioBean.excluir()}" update="form" />
+                    </h:panelGrid>
+                </p:layoutUnit>
+            </p:layout> </p:outputPanel>
     </h:body>
 </html>
 
