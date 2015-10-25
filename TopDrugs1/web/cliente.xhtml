@@ -15,64 +15,117 @@ and open the template in the editor.
     <h:body>                
 
         <p:outputPanel style="font-size: 12px">
-            <p:layout style="height: 400px">
+            <p:layout>
                 <p:layoutUnit position="west" size="20%">
                     teste
                 </p:layoutUnit>
 
-                <p:layoutUnit position="center" size="80%">
+                <p:layoutUnit position="center">
+
                     <h:panelGrid columns="3" cellpadding="5" style="padding: 10px; text-align: center">
                         <p:outputLabel value="Nome:" />
                         <p:inputText size="40" />
                         <p:button value="Pesquisar"></p:button>
                     </h:panelGrid>
 
-                    <p:outputPanel>
-                        <p:dataTable id="tab_clientes" var="cliente" value="#{pessoaBean.listaClientes}" selectionMode="single" selection="#{pessoaBean.pessoa}" rowKey="#{cliente.codigoPessoa}"> 
-                            <p:column headerText="Nome" width="25%">
-                                <p:outputLabel value="#{cliente.nome}" />
-                            </p:column>
+                    <h:form id="clientes">
+                        <p:outputPanel>
+                            <p:dataTable id="tab_clientes" var="cliente" value="#{pessoaBean.listaClientes}" selectionMode="single" selection="#{pessoaBean.pessoa}" rowKey="#{cliente.codigoPessoa}"> 
+                                <p:column headerText="Nome" width="25%">
+                                    <p:outputLabel value="#{cliente.nome}" />
+                                </p:column>
 
-                            <p:column headerText="Email" width="20%">
-                                <p:outputLabel value="#{cliente.email}" />
-                            </p:column>
+                                <p:column headerText="Email" width="20%">
+                                    <p:outputLabel value="#{cliente.email}" />
+                                </p:column>
 
-                            <p:column headerText="CPF" width="11%">
-                                <p:outputLabel value="#{cliente.cpf}" />                        
-                            </p:column>
+                                <p:column headerText="CPF" width="11%">
+                                    <p:outputLabel value="#{cliente.cpf}" />                        
+                                </p:column>
 
-                            <p:column headerText="Rua">
-                                <p:outputLabel value="#{cliente.rua}" />
-                            </p:column>
+                                <p:column headerText="Rua">
+                                    <p:outputLabel value="#{cliente.rua}" />
+                                </p:column>
 
-                            <p:column headerText="Nº">
-                                <p:outputLabel value="#{cliente.numero}" />
-                            </p:column>
+                                <p:column headerText="Nº">
+                                    <p:outputLabel value="#{cliente.numero}" />
+                                </p:column>
 
-                            <p:column headerText="Bairro">
-                                <p:outputLabel value="#{cliente.bairro}" />
-                            </p:column>
+                                <p:column headerText="Bairro">
+                                    <p:outputLabel value="#{cliente.bairro}" />
+                                </p:column>
 
-                            <p:column headerText="Cidade">
-                                <p:outputLabel value="#{cliente.cidade}" />
-                            </p:column>
+                                <p:column headerText="Cidade">
+                                    <p:outputLabel value="#{cliente.cidade}" />
+                                </p:column>
 
-                            <p:column headerText="UF" width="5%">
-                                <p:outputLabel value="#{cliente.uf}" />
-                            </p:column>
+                                <p:column headerText="UF" width="5%">
+                                    <p:outputLabel value="#{cliente.uf}" />
+                                </p:column>
 
-                        </p:dataTable>
+                            </p:dataTable>
+                        </p:outputPanel>
+
+                        <p:outputLabel>
+                            <h:panelGrid columns="3">
+                                <p:button value="Incluir" href="clienteCadastro.xhtml" />
+                                <p:commandButton value="Alterar" update="cadastro_cliente" />
+                                <p:commandButton value="Excluir" actionListener="#{pessoaBean.excluir()}" update="clientes" />
+                            </h:panelGrid>
+                        </p:outputLabel>
+                    </h:form>
+
+                    <p:outputPanel style="margin-top: 15px; border: 1px solid gainsboro">
+                        <h:form id="cadastro_cliente">
+                            <p:growl id="mensagem" showDetail="true" sticky="true" />
+                            <p:outputPanel style="padding: 5px 10px 20px 10px;">
+                                <h:panelGrid columns="2" cellspacing="10"  width="100%">
+                                    <p:outputLabel value="Nome:" />
+                                    <p:inputText style="width: 400px" value="#{pessoaBean.pessoa.nome}" />
+
+                                    <p:outputLabel value="Email:" />
+                                    <p:inputText style="width: 250px" value="#{pessoaBean.pessoa.email}"/>
+
+                                    <p:outputLabel value="CPF:" />
+                                    <p:inputText style="width: 150px" value="#{pessoaBean.pessoa.cpf}" />
+
+                                    <p:outputLabel value="Data de Nascimento:" />
+                                    <p:calendar locale="pt" value="#{pessoaBean.pessoa.dataNascimento}" />
+
+                                    <p:outputLabel value="Rua:" />
+                                    <p:inputText style="width: 400px" value="#{pessoaBean.pessoa.rua}" />
+
+                                    <p:outputLabel value="Número:" />
+                                    <p:inputText style="width: 100px" value="#{pessoaBean.pessoa.numero}" />
+
+                                    <p:outputLabel value="Complemento:" />
+                                    <p:inputText style="width: 400px" value="#{pessoaBean.pessoa.complemento}" />
+
+                                    <p:outputLabel value="Bairro:" />
+                                    <p:inputText style="width: 250px" value="#{pessoaBean.pessoa.bairro}" />
+
+                                    <p:outputLabel value="Cidade:" />
+                                    <p:inputText style="width: 250px" value="#{pessoaBean.pessoa.cidade}" />
+
+                                    <p:outputLabel value="UF:" />
+                                    <p:selectOneMenu value="#{pessoaBean.pessoa.uf}" style="width: 200px">
+                                        <f:selectItem itemLabel="Mato Grosso" itemValue="MT" />
+                                        <f:selectItem itemLabel="Mato Grosso do Sul" itemValue="MS" />
+                                        <f:selectItem itemLabel="Rondônia" itemValue="RO" />
+                                        <f:selectItem itemLabel="São Paulo" itemValue="SP" />
+                                    </p:selectOneMenu>
+                                </h:panelGrid>
+                            </p:outputPanel>       
+                            <p:outputPanel style="text-align: right;">
+                                <h:panelGrid columns="2" cellspacing="5" >
+                                    <p:button href="cliente.xhtml" value="Voltar" />
+                                    <p:commandButton value="Salvar" actionListener="#{pessoaBean.salvar()}" update="clientes cadastro_cliente mensagem"/>
+                                </h:panelGrid>
+                            </p:outputPanel>
+                        </h:form>
                     </p:outputPanel>
-                    
-                    <p:outputLabel>
-                        <h:panelGrid columns="3">
-                            <p:button value="Incluir" href="clienteCadastro.xhtml" />
-                            <p:button value="Alterar" href="clienteCadastro.xhtml" />
-                            <p:button value="Excluir" />
-                        </h:panelGrid>
-                    </p:outputLabel>
-
                 </p:layoutUnit>
+
             </p:layout>
         </p:outputPanel>
 

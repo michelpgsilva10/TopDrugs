@@ -14,9 +14,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.flow.FlowScoped;
 import vo.PessoaVO;
 
 /**
@@ -24,7 +23,7 @@ import vo.PessoaVO;
  * @author Roberto
  */
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class PessoaBean implements Serializable{
     
      private PessoaVO pessoa;
@@ -90,8 +89,10 @@ public class PessoaBean implements Serializable{
         pessoa = new PessoaVO();
     }
     
-    public void alterarCadastro() {
-        setPessoa(pessoa);
+    public void excluir() {
+        pessoaDAO.iniciarTransacao();
+        pessoaDAO.excluir(pessoa);
+        pessoaDAO.confirmarTransacao();
     }
     
     

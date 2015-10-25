@@ -12,8 +12,7 @@ and open the template in the editor.
     <h:head>        
         <title>Cadastro de Cliente</title>
     </h:head>
-    <h:body>                
-
+    <h:body>             
         <h:form id="cadastro_cliente">
             <p:outputPanel style="font-size: 14px">
                 <p:layout>
@@ -74,7 +73,7 @@ and open the template in the editor.
                         <p:outputPanel style="text-align: right;">
                             <h:panelGrid columns="2" cellspacing="5" >
                                 <p:button href="cliente.xhtml" value="Voltar" />
-                                <p:commandButton value="Salvar" actionListener="#{pessoaBean.salvar()}" update="cadastro_cliente mensagem*"/>
+                                <p:commandButton value="Salvar" actionListener="#{pessoaBean.salvar()}" update="cadastro_cliente mensagem"/>
                             </h:panelGrid>
                         </p:outputPanel>
                     </p:layoutUnit>
