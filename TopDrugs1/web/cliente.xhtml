@@ -28,16 +28,16 @@ and open the template in the editor.
                     </h:panelGrid>
 
                     <p:outputPanel>
-                        <p:dataTable var="cliente" value="#{pessoaBean.listaClientes}" selectionMode="single" selection="#{pessoaBean.pessoa}" rowKey="#{cliente.codigoPessoa}"> 
-                            <p:column headerText="Nome">
+                        <p:dataTable id="tab_clientes" var="cliente" value="#{pessoaBean.listaClientes}" selectionMode="single" selection="#{pessoaBean.pessoa}" rowKey="#{cliente.codigoPessoa}"> 
+                            <p:column headerText="Nome" width="25%">
                                 <p:outputLabel value="#{cliente.nome}" />
                             </p:column>
 
-                            <p:column headerText="Email" width="25%">
+                            <p:column headerText="Email" width="20%">
                                 <p:outputLabel value="#{cliente.email}" />
                             </p:column>
 
-                            <p:column headerText="CPF">
+                            <p:column headerText="CPF" width="11%">
                                 <p:outputLabel value="#{cliente.cpf}" />                        
                             </p:column>
 
@@ -45,7 +45,7 @@ and open the template in the editor.
                                 <p:outputLabel value="#{cliente.rua}" />
                             </p:column>
 
-                            <p:column headerText="Número">
+                            <p:column headerText="Nº">
                                 <p:outputLabel value="#{cliente.numero}" />
                             </p:column>
 
@@ -57,7 +57,7 @@ and open the template in the editor.
                                 <p:outputLabel value="#{cliente.cidade}" />
                             </p:column>
 
-                            <p:column headerText="UF">
+                            <p:column headerText="UF" width="5%">
                                 <p:outputLabel value="#{cliente.uf}" />
                             </p:column>
 
@@ -66,8 +66,8 @@ and open the template in the editor.
                     
                     <p:outputLabel>
                         <h:panelGrid columns="3">
-                            <p:button value="Incluir" />
-                            <p:button value="Alterar" />
+                            <p:button value="Incluir" href="clienteCadastro.xhtml" />
+                            <p:button value="Alterar" href="clienteCadastro.xhtml" />
                             <p:button value="Excluir" />
                         </h:panelGrid>
                     </p:outputLabel>

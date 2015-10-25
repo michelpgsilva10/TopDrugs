@@ -10,8 +10,13 @@ import dao.PessoaDAO;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import vo.PessoaVO;
 
 /**
@@ -19,7 +24,7 @@ import vo.PessoaVO;
  * @author Roberto
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class PessoaBean implements Serializable{
     
      private PessoaVO pessoa;
@@ -71,6 +76,22 @@ public class PessoaBean implements Serializable{
 
     public void setListaClientes(List<PessoaVO> listaClientes) {
         this.listaClientes = listaClientes;
+    }
+    
+    public void salvar() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        
+        context.addMessage(null, new FacesMessage("Cadastro de Cliente", "O registro foi incluído com sucesso!"));
+        
+        pessoaDAO.iniciarTransacao();
+        pessoaDAO.incluir(pessoa);
+        pessoaDAO.confirmarTransacao();
+        
+        pessoa = new PessoaVO();
+    }
+    
+    public void alterarCadastro() {
+        setPessoa(pessoa);
     }
     
     
