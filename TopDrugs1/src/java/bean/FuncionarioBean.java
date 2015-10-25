@@ -108,7 +108,7 @@ public class FuncionarioBean implements Serializable {
         context.addMessage(null, new FacesMessage("Cadastro de Funcionario", "O registro foi incluído com sucesso!"));
         
         funcionarioDAO.iniciarTransacao();
-        funcionarioDAO.excluir(funcionario);
+        funcionarioDAO.incluir(funcionario);
         funcionarioDAO.confirmarTransacao();
         
         funcionario = new FuncionarioVO();
