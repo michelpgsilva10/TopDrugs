@@ -18,8 +18,7 @@ public class FuncionarioDAO extends GenericDAO<FuncionarioVO> {
     public FuncionarioDAO(EntityManager entityManager) {
         super(entityManager);
         this.manager =entityManager;
-    }
-    
+    }    
     
     public List<FuncionarioVO> buscar( String nome){
         String sql="Select f from FuncionarioVO f where f.nome LIKE :name";

@@ -11,11 +11,9 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.flow.FlowScoped;
 import vo.PessoaVO;
 
 /**
@@ -30,6 +28,7 @@ public class PessoaBean implements Serializable{
      private List<PessoaVO> listaPessoa;
      private List<PessoaVO> listaClientes;
      private PessoaDAO  pessoaDAO;
+     private String buscaNome;
 
     /**
      * Creates a new instance of PessoaBean
@@ -76,6 +75,18 @@ public class PessoaBean implements Serializable{
     public void setListaClientes(List<PessoaVO> listaClientes) {
         this.listaClientes = listaClientes;
     }
+
+    public String getBuscaNome() {
+        return buscaNome;
+    }
+
+    public void setBuscaNome(String buscaNome) {
+        this.buscaNome = buscaNome;
+    }   
+    
+    public void buscarClientesPorNome() {
+        setListaClientes(pessoaDAO.getClientesPorNome(buscaNome));
+    }
     
     public void salvar() {
         FacesContext context = FacesContext.getCurrentInstance();
@@ -95,5 +106,18 @@ public class PessoaBean implements Serializable{
         pessoaDAO.confirmarTransacao();
     }
     
+    public void limparDadosCliente() {
+        pessoa.setBairro("");
+        pessoa.setCidade("");
+        pessoa.setComplemento("");
+        pessoa.setCpf("");
+        pessoa.setDataCadastro(null);
+        pessoa.setEmail("");
+        pessoa.setLocalDeTrabalho("");
+        pessoa.setNome("");
+        pessoa.setNumero(0);
+        pessoa.setRua("");
+        pessoa.setUf("");
+    }
     
 }

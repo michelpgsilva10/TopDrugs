@@ -22,13 +22,12 @@ and open the template in the editor.
 
                 <p:layoutUnit position="center">
 
-                    <h:panelGrid columns="3" cellpadding="5" style="padding: 10px; text-align: center">
-                        <p:outputLabel value="Nome:" />
-                        <p:inputText size="40" />
-                        <p:button value="Pesquisar"></p:button>
-                    </h:panelGrid>
-
                     <h:form id="clientes">
+                        <h:panelGrid columns="3" cellpadding="5" style="padding: 10px; text-align: center">
+                            <p:outputLabel value="Nome:" />
+                            <p:inputText size="40" value="#{pessoaBean.buscaNome}" />
+                            <p:commandButton value="Pesquisar" actionListener="#{pessoaBean.buscarClientesPorNome()}" update="clientes" />
+                        </h:panelGrid>
                         <p:outputPanel>
                             <p:dataTable id="tab_clientes" var="cliente" value="#{pessoaBean.listaClientes}" selectionMode="single" selection="#{pessoaBean.pessoa}" rowKey="#{cliente.codigoPessoa}"> 
                                 <p:column headerText="Nome" width="25%">
@@ -68,7 +67,6 @@ and open the template in the editor.
 
                         <p:outputLabel>
                             <h:panelGrid columns="3">
-                                <p:button value="Incluir" href="clienteCadastro.xhtml" />
                                 <p:commandButton value="Alterar" update="cadastro_cliente" />
                                 <p:commandButton value="Excluir" actionListener="#{pessoaBean.excluir()}" update="clientes" />
                             </h:panelGrid>
@@ -78,6 +76,9 @@ and open the template in the editor.
                     <p:outputPanel style="margin-top: 15px; border: 1px solid gainsboro">
                         <h:form id="cadastro_cliente">
                             <p:growl id="mensagem" showDetail="true" sticky="true" />
+                            <p:outputPanel style="padding: 20px; font-size: 18px">
+                                <p:outputLabel value="Cadastro de Clientes" />
+                            </p:outputPanel>
                             <p:outputPanel style="padding: 5px 10px 20px 10px;">
                                 <h:panelGrid columns="2" cellspacing="10"  width="100%">
                                     <p:outputLabel value="Nome:" />
@@ -118,7 +119,7 @@ and open the template in the editor.
                             </p:outputPanel>       
                             <p:outputPanel style="text-align: right;">
                                 <h:panelGrid columns="2" cellspacing="5" >
-                                    <p:button href="cliente.xhtml" value="Voltar" />
+                                    <p:commandButton value="Limpar Campos" actionListener="#{pessoaBean.limparDadosCliente()}" update="cadastro_cliente" />
                                     <p:commandButton value="Salvar" actionListener="#{pessoaBean.salvar()}" update="clientes cadastro_cliente mensagem"/>
                                 </h:panelGrid>
                             </p:outputPanel>

@@ -27,4 +27,11 @@ public class PessoaDAO extends GenericDAO<PessoaVO> {
                 + "(Select f.codigoPessoa From FuncionarioVO f)").getResultList();
     }
 
+    public List<PessoaVO> getClientesPorNome(String nome) {
+        String consultaSQL = "Select c From PessoaVO c Where c.codigoPessoa not in "
+                + "(Select f.codigoPessoa From FuncionarioVO f) AND UPPER(c.nome) Like :nome";
+        return entityManager.createQuery(consultaSQL)
+                .setParameter("nome", "%" + nome.toUpperCase() + "%").getResultList();
+    }
+
 }
