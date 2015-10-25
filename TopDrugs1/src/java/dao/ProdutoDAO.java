@@ -21,5 +21,10 @@ public class ProdutoDAO extends GenericDAO<ProdutoVO> {
     public ProdutoDAO(EntityManager entityManager) {
         super(entityManager);
         this.entityManager = entityManager;
-    }   
+    } 
+    
+      public List<ProdutoVO> buscar( String nome){
+        String sql="Select f from ProdutoVO f where f.nome LIKE :name";
+       return entityManager.createQuery(sql).setParameter("name","%"+nome+"%").getResultList();
+    }
 }

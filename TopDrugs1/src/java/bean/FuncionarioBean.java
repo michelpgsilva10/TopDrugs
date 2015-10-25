@@ -95,7 +95,6 @@ public class FuncionarioBean implements Serializable {
            funcionarioDAO.confirmarTransacao();
        }
        public void buscar(){
-           //funcionarioDAO.iniciarTransacao();
            setListaFuncionarios(funcionarioDAO.buscar(buscaNome));
            
            
