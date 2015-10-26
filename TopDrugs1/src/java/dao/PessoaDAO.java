@@ -33,5 +33,11 @@ public class PessoaDAO extends GenericDAO<PessoaVO> {
         return entityManager.createQuery(consultaSQL)
                 .setParameter("nome", "%" + nome.toUpperCase() + "%").getResultList();
     }
+    
+    public PessoaVO getClienteById(int codigoPessoa) {
+        return (PessoaVO) entityManager.createQuery("Select c From PessoaVO c Where c.codigoPessoa not in "
+                + "(Select f.codigoPessoa From FuncionarioVO f) AND c.codigoPessoa = :cod")
+                .setParameter("cod", codigoPessoa).getSingleResult();
+    }
 
 }

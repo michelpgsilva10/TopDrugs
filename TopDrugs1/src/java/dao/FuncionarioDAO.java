@@ -24,4 +24,9 @@ public class FuncionarioDAO extends GenericDAO<FuncionarioVO> {
         String sql="Select f from FuncionarioVO f where f.nome LIKE :name";
        return manager.createQuery(sql).setParameter("name","%"+nome+"%").getResultList();
     }
+    
+    public FuncionarioVO getFuncionarioById(int codigoPessoa) {
+        String sql = "Select f From FuncionarioVO f Where f.codigoPessoa = :cod";
+        return (FuncionarioVO) manager.createQuery(sql).setParameter("cod", codigoPessoa).getSingleResult();
+    }
 }

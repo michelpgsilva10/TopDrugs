@@ -6,6 +6,7 @@
 
 package vo;
 
+import dao.SampleEntity;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -180,7 +181,27 @@ public class PessoaVO {
     public void setDataCadastro(Date dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
- 
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + this.codigoPessoa;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final PessoaVO other = (PessoaVO) obj;
+        if (this.codigoPessoa != other.codigoPessoa) {
+            return false;
+        }
+        return true;
+    }   
     
 }

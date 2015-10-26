@@ -45,10 +45,6 @@ public class VendaVO {
     @JoinColumn(name = "cliente_fk", nullable = false)
     private PessoaVO pessoa;    
     
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "produto_fk", nullable = false)
-    private ProdutoVO produto;
-    
     @Column(name="numero_nota",nullable = false)
     private int numeroNota;
     
@@ -83,14 +79,6 @@ public class VendaVO {
         this.pessoa = pessoa;
     }
 
-    public ProdutoVO getProduto() {
-        return produto;
-    }
-
-    public void setProduto(ProdutoVO produto) {
-        this.produto = produto;
-    }
-
     public int getNumeroNota() {
         return numeroNota;
     }
@@ -112,9 +100,13 @@ public class VendaVO {
     }
 
     public void setData(Date data) {
-        this.data = data;
+        if (data == null)
+            this.data = new Date();
+        else
+            this.data = data;
     }
     
     
     
 }
+    

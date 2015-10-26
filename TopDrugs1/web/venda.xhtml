@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Sistema</title>
+    </h:head>
+    <h:body>
+        <p:outputPanel style="font-size: 12px" >  
+            <p:layout >
+                <p:layoutUnit position="west" resizable="true" size="20%">
+
+                    <h:form>  
+                        <p:growl id="messages" showDetail="false"/>
+
+                        <h3 style="margin-top:0">Sistema</h3>
+                        <p:menu>
+                            <p:submenu label="Navegação">
+                                <p:menuitem value="Início" outcome="/index"  icon="ui-icon-home" />
+                            </p:submenu>
+                            <p:submenu label="Cadastros"> 
+                                <p:menuitem value="Funcionário" outcome="/funcionario" icon="ui-icon-star" />
+                                <p:menuitem value="Cliente" outcome="/cliente" icon="ui-icon-star" />
+                                <p:menuitem value="Produto" outcome="/produto" icon="ui-icon-star" />            
+                            </p:submenu>
+                            <p:submenu label="Rotinas"> 
+                                <p:menuitem value="Realizar Venda" outcome="/venda" icon="ui-icon-star" /> 
+                            </p:submenu>
+                        </p:menu>
+                    </h:form> 
+                </p:layoutUnit> 
+                <p:layoutUnit position="center">
+                    <h:form id="vendas">
+                        <p:outputPanel style="margin-top: 15px; border: 1px solid gainsboro">
+                            <p:growl id="mensagem" showDetail="true" sticky="true" />
+                            <p:outputPanel style="padding: 20px; font-size: 18px">
+                                <p:outputLabel value="Vendas Realizadas" />
+                            </p:outputPanel>
+                            <p:outputPanel style="padding: 5px 10px 20px 10px;">
+                                <p:dataTable var="vend" value="#{vendaBean.listavenda}" >
+                                    <p:column headerText="Cliente">
+                                        <p:outputLabel value="#{vend.pessoa.nome}" />
+                                    </p:column>
+
+                                    <p:column headerText="Nota Fiscal" >
+                                        <p:outputLabel value="#{vend.numeroNota}" />
+                                    </p:column>
+
+                                    <p:column headerText="Desconto" >
+                                        <p:outputLabel value="#{vend.desconto}" />
+                                    </p:column>                                   
+
+                                    <p:column headerText="Data da Venda">
+                                        <p:outputLabel value="#{vend.data.time}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </p:outputLabel>                                        
+                                    </p:column>
+
+                                    <p:column headerText="Funcionário">
+                                        <p:outputLabel value="#{vend.funcionario.nome}" />
+                                    </p:column>
+
+                                </p:dataTable>
+                            </p:outputPanel>     
+                            
+                        </p:outputPanel>
+
+                        <p:outputPanel>
+
+                            <h:panelGrid columns="2" cellspacing="20">
+                                <p:outputLabel value="Cliente:" />
+                                <p:selectOneMenu value="#{vendaBean.venda.pessoa}" style="width: 300px;" converter="pessoaConverter">
+                                    <f:selectItem itemLabel="Escolha um Cliente" itemValue="" />
+                                    <f:selectItems value="#{pessoaBean.listaClientes}" var="lc" itemValue="#{lc}" itemLabel="#{lc.nome}" />
+                                </p:selectOneMenu>
+
+                                <p:outputLabel value="Número da Nota:" />
+                                <p:inputText style="width: 100px;" value="#{vendaBean.venda.numeroNota}" />
+
+                                <p:outputLabel value="Desconto:" />
+                                <p:inputText style="width: 100px;" value="#{vendaBean.venda.desconto}" />
+
+                                <p:outputLabel value="Funcionário:" />
+                                <p:selectOneMenu value="#{vendaBean.venda.funcionario}" style="width: 300px;" converter="funcionarioConverter">
+                                    <f:selectItem itemLabel="Escolha um Funcionário" itemValue="" />
+                                    <f:selectItems value="#{funcionarioBean.listaFuncionarios}" var="func" itemLabel="#{func.nome}" itemValue="#{func}" />
+                                </p:selectOneMenu>
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="2" cellspacing="15">
+                                <p:commandButton value="Confirmar Venda" actionListener="#{vendaBean.salvar()}" update="vendas" />
+                            </h:panelGrid>
+
+
+                            <!--                            <h:panelGrid columns="2" cellspacing="15">
+                                                            <p:outputLabel value="Produto:" />
+                                                            <p:selectOneMenu value="#{itemVendaBean.itemVenda.produto}" style="width: 300px;">
+                                                                <f:selectItems value="#{produtoBean.listaproduto}" />
+                                                            </p:selectOneMenu>
+                                                            
+                                                            <p:outputLabel value="Quantidade:" />
+                                                            <p:inputText value="#{itemVendaBean.itemVenda.quantidade}" />
+                                                            
+                                                            <p:outputLabel value="Valor Unitário:" />
+                                                            <p:inputText value="#{itemVendaBean.itemVenda.valorUnidade}" />
+                                                        </h:panelGrid>-->
+
+                        </p:outputPanel>
+                    </h:form>
+                </p:layoutUnit>
+            </p:layout>   
+        </p:outputPanel>
+    </h:body>
+</html>

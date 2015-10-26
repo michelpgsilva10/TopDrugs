@@ -22,7 +22,7 @@ public class FabricaEntityManager {
     }
     
     static {
-        entityManagerFactory = Persistence.createEntityManagerFactory("TopDrugs");
+        entityManagerFactory = Persistence.createEntityManagerFactory("TopDrugs1PU");
     }
     
     public static EntityManager getEntityManager() {

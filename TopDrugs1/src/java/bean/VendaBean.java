@@ -48,6 +48,8 @@ public class VendaBean implements Serializable{
     }
 
     public List<VendaVO> getListavenda() {
+        if (listavenda == null)
+            return vendaDAO.listarTodos();
         return listavenda;
     }
 
@@ -61,6 +63,14 @@ public class VendaBean implements Serializable{
 
     public void setVendaDAO(VendaDAO vendaDAO) {
         this.vendaDAO = vendaDAO;
+    }
+    
+    public void salvar() {
+        vendaDAO.iniciarTransacao();
+        vendaDAO.incluir(venda);
+        vendaDAO.confirmarTransacao();
+        
+        venda = new VendaVO();
     }
     
 }
